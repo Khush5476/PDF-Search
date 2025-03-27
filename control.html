@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Search & Upload</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <!-- Include Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body class="light-mode">
+    <div class="container">
+        <h1 class="header">PDF Search & Upload</h1>
+
+        <div class="upload-section">
+            <label for="pdf-upload" class="upload-label">
+                <span>Upload PDF</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="upload-icon" viewBox="0 0 16 16">
+                    <path d="M8 0a.5.5 0 0 1 .5.5V7h6a.5.5 0 0 1 .354.854l-7 7a.5.5 0 0 1-.708 0l-7-7A.5.5 0 0 1 2 7h6V.5A.5.5 0 0 1 8 0z"/>
+                </svg>
+            </label>
+            <input type="file" id="pdf-upload" accept="application/pdf" onchange="handleFileUpload(event)" multiple>
+        </div>
+
+        <div id="pdf-info" class="pdf-info"></div>
+
+        <!-- Show All PDFs Button (Now above the search bar) -->
+        <button id="show-all-pdfs-btn" class="show-all-btn" onclick="showAllUploadedPDFs()">
+            Show All PDFs
+        </button>
+
+        <div class="search-section">
+            <input type="text" id="search-bar" placeholder="Search PDF..." oninput="searchPDF()">
+        </div>
+
+        <div class="results-section">
+            <div id="search-results" class="results-list"></div>
+            <button id="more-button" class="more-btn" onclick="showAllResults()">Show All</button>
+        </div>
+
+        <!-- Modal Popup for All PDFs -->
+        <div id="pdf-modal" class="pdf-modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <h3>All Uploaded PDFs</h3>
+                <div id="uploaded-pdfs-list" class="uploaded-pdfs-list"></div>
+            </div>
+        </div>
+
+        <div id="pdf-viewer" class="pdf-viewer">
+            <canvas id="pdf-canvas"></canvas>
+        </div>
+    </div>
+
+    <!-- Add the theme toggle button below the header -->
+    <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleTheme()">
+        <i id="theme-icon" class="fas fa-sun"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
